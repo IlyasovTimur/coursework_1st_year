@@ -1,12 +1,12 @@
 public class Employee {
-    private final Person person;
-    private int department;
-    private double salary;
-    public static int numberEmployees = 0;
-    public int id;
+    private String fullName; // Ф.И.О
+    private int department; // отдел
+    private double salary; // зарплата
+    public static int countEmployees = 0; // счетчик
+    public int id; // id - сотрудника
 
-    public Employee(Person person, int department, double salary) {
-        this.person = person;
+    public Employee(String person, int department, double salary) {
+        this.fullName = person;
         if (department < 0 || department > 5) {
             throw new IllegalArgumentException("Такого отдела нет");
         }
@@ -15,17 +15,20 @@ public class Employee {
             throw new IllegalArgumentException("Заработная плата не может быть отрицательной");
         }
         this.salary = salary;
-        id = numberEmployees;
-        numberEmployees++;
+        id = countEmployees;
+        countEmployees++;
     }
-    public Person getPerson() {
-        return person;
+    public String getFullName() {
+        return fullName;
     }
     public  int getDepartment(){
         return department;
     }
     public double getSalary() {
         return this.salary;
+    }
+    public int getId() {
+        return id;
     }
     public void setDepartment(int department) {
         if (department < 0 || department > 5) {
@@ -41,10 +44,6 @@ public class Employee {
     }
     @Override
     public String toString() {
-        return "Employee (" +
-                "person - " + person +
-                ", department - " + department +
-                ", salary - " + salary +
-                ')';
+        return String.format("Сотрудник: ID - %d, Ф.И.О - %s, отдел № - %d, заработная плата - %.2f руб.",id,fullName,department,salary);
     }
 }
